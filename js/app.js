@@ -1,19 +1,17 @@
-let nav_contries_arr = ["Israel", "USA", "United Kingdom", "France", "Thailand"]
+import { declareEvents } from "./events.js";
+import {createNavBar, doSomthing} from "./functions.js"
+
+
 
 window.onload = () => {
-    console.log("onload");
     createNavBar("#id_nav");
+    doApi();
+    declareEvents();
 }
 
-const createNavBar = (_parent) => {
-    let parent = document.querySelector(_parent);
-    parent.innerHTML = "";
-    nav_contries_arr.forEach( item =>{
-        console.log("foreach");
-        parent.innerHTML += `
-        <li class="nav-item">
-            <a class="nav-link active" href="#">${item}</a>
-        </li>`
-    })
-    console.log("create");
-}
+const doApi = async () => {
+  let url = "https://restcountries.com/v3.1/all";
+  let resp = await fetch(url);
+  let data = await resp.json();
+  doSomthing(data);
+};
