@@ -1,6 +1,8 @@
-export default class County{
-    constructor(_parent, _item){
-        this.parent = _parent;
+import { getCountryByName, getNameOfCode } from "./functions.js"
+
+export default class County {
+    constructor(_parent, _item) {
+        this.parent = document.querySelector(_parent);
         this.name = _item.name.common;
         this.pop = Number(_item.population).toLocaleString();
         this.region = _item.region;
@@ -16,17 +18,34 @@ export default class County{
         console.log(this.languages);
     }
     render = () => {
-        let parent1 = document.querySelector(this.parent);
+        this.parent.innerHTML = "";
+        let div = document.createElement("div");
+        div.className = "border bg-secondary bg-opacity-50 p-4 w-50";
+        this.parent.append(div);
+        div.innerHTML =
+            `<img src="${this.flag}" alt="${this.name}" class="w-50 float-end mx-4">
+            <div class="ms-4 ">
 
-        // Convert each border to a link
-        // const borderLinks = this.borders.map(border => `<a href="https://restcountries.com/v3.1/alpha/${border}" target="_blank">${border}</a>`);
+    <h2>${this.name}</h2>
+    <div>POP: ${this.pop} </div>
+    <div>Region: ${this.region}</div>
+    <div>Languages: ${this.joinLanguages}</div>
+    <div>Coin:  ${this.renderCoin(this.coin)}</div>
+    <div>Capital: ${this.capital}</div>
+    <div class="mt-3 "><strong>States with borders:</strong><br>
+    <div id="id_borders" class="borders_div"> ${this.joinBorders}</div>
+    </div>
+    </div>
+    
+    <iframe class="mt-3 col-12 px-4" height="300" src="https://maps.google.com/maps?q=${this.latlng[0]},${this.latlng[1]}&z=7&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ></iframe>
+   `
 
-        // parent1.innerHTML += `
+        // this.parent.innerHTML = `
         //     <div class="card mt-4">
         //         <div class="row g-0">
         //             <div class="col-md-2">
         //                 <img src="${this.flag}" class="card-img" alt="${this.name} Flag">
-        //                 <p>Borders: ${borderLinks.join(', ')}</p>
+        //                 <p>Borders: ${this.joinBorders}</p>
         //             </div>
         //             <div class="col-md-10">
         //                 <div class="card-body">
@@ -45,30 +64,28 @@ export default class County{
         //         </div>
         //     </div>
         // `;
-        parent1.innerHTML += `
-        <div class="card mt-4">
-            <div class="row g-0">
-                <div class="col-md-2">
-                    <img src="${this.flag}" class="card-img" alt="${this.name} Flag">
-                    <p>Borders: ${this.joinBorders}</p>
-                </div>
-                <!-- ... (rest of your existing HTML) -->
-            </div>
-        </div>
-    `;
 
-    // Add click event listeners to border links
-    this.borders.forEach(border => {
-        const borderLink = document.querySelector(`.border-link[data-border="${border}"]`);
-        if (borderLink) {
-            borderLink.addEventListener('click', (event) => {
-                event.preventDefault();
-                // Call your doApi function with the corresponding border
-                // doApi(border);
-                alert(border)
-            });
-        }
-    });
+
+        // Add click event listeners to border links
+        this.borders.forEach(border => {
+            const borderLink = document.querySelector(`.border-link[data-border="${border}"]`);
+            if (borderLink) {
+                let country_name;
+                getNameOfCode(border)
+                    .then(data => {
+                        country_name = data
+                        console.log(country_name);
+                        if (!country_name) {
+                            return;
+                        }
+                        borderLink.innerHTML = country_name;
+                        borderLink.addEventListener('click', (event) => {
+                            event.preventDefault();
+                            getCountryByName(country_name);
+                        });
+                    });
+            }
+        });
     }
 
     renderCoin = (currencies) => {

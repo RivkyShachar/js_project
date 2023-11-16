@@ -1,4 +1,4 @@
-import {getCountryByName} from "./functions.js"
+import { getCountryByName } from "./functions.js"
 
 export const declareEvents = () => {
     let select_box = document.querySelector("#id_option");
@@ -6,16 +6,23 @@ export const declareEvents = () => {
     let search_btn = document.querySelector("#id_search_btn");
     let parent = document.querySelector("main")
 
-    search_btn.addEventListener("submit", e => {
+    search_btn.addEventListener("click", e => {
         e.preventDefault()
         getCountryByName(input_search.value);
-    })
+    });
 
     select_box.addEventListener("change", () => {
-        parent.innerHTML = "";
         getCountryByName(select_box.value);
         input_search.value = select_box.value;
-    })
+    });
+
+    input_search.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            getCountryByName(input_search.value);
+            select_box.value = "Israel";
+        }
+    });
 
 
 
