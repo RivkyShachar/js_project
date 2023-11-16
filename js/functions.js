@@ -36,9 +36,11 @@ export const createSelectBox = (_parent) => {
     </select>`;
     let option_parent = document.querySelector("#id_option");
     countries_names.forEach(item => {
-        option_parent.innerHTML += `<option value="${item.name.common}">${item.name.common}</option>`;
+        option_parent.innerHTML += `<option value="${item.name.common}">${item.name.common} </option>`;
     })
 }
+
+
 
 export const getCountryByName = async(_name) => {
     await doApi(`name/${_name}`)
@@ -52,7 +54,6 @@ export const createCountry = async() => {
 
 export const getNameOfCode = async(_code) => {
     await doApi(`alpha/${_code}`)
-    console.log(country_item[0].name.common);
     return country_item[0].name.common;
 }
 

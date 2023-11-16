@@ -1,3 +1,7 @@
 body{
     background-image: url("../img/flags_bg.png");
 }
+
+nav{
+    background: #1F5084;
+}
