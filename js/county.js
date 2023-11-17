@@ -60,6 +60,25 @@ export default class County {
         });
     }
 
+    renderSmall = () => {
+        let div = document.createElement("div");
+        div.className = "col-6 col-lg-3 col-md-6 col-sm-12 px-3 mt-4 text-center box";
+        this.parent.append(div);
+        let img = document.createElement("img");
+        img.src = this.flag;
+        img.alt = this.name;
+        img.className = "col-10 "
+        img.addEventListener("click", () => {
+            getCountryByName(this.name);
+        });
+        div.append(img);
+        let h2 = document.createElement("h2");
+        h2.textContent = this.name;
+        h2.className = "my-3"
+        h2.style.fontWeight = "700";
+        div.append(h2);
+    }
+
     renderCoin = (currencies) => {
         return Object.entries(currencies)
             .map(([code, currency]) => `${currency.name} (${currency.symbol})`)
@@ -72,8 +91,8 @@ export default class County {
         // Calculate the logarithm base 10 of the area and map it to the zoom level
         const logArea = Math.log10(area);
         const zoomLevel = Math.round(-0.3633 * logArea + 7.93);
-    
+
         // Ensure the zoom level is within reasonable bounds
         return Math.min(Math.max(zoomLevel, 1), 20);
-      }
+    }
 }

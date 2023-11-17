@@ -1,15 +1,9 @@
 import { getCountryByName } from "./functions.js"
 
-export const declareEvents = () => {
+export const declareEventsIndex = () => {
     let select_box = document.querySelector("#id_option");
     let input_search = document.querySelector("#id_input");
-    let search_btn = document.querySelector("#id_search_btn");
     let parent = document.querySelector("main")
-
-    search_btn.addEventListener("click", e => {
-        e.preventDefault()
-        getCountryByName(input_search.value);
-    });
 
     select_box.addEventListener("change", () => {
         getCountryByName(select_box.value);
@@ -23,7 +17,14 @@ export const declareEvents = () => {
             select_box.value = "Israel";
         }
     });
+}
 
-
-
+export const declareEvents= () => {
+    declareEventsIndex();
+    
+    let search_btn = document.querySelector("#id_search_btn");
+    search_btn.addEventListener("click", e => {
+        e.preventDefault()
+        getCountryByName(input_search.value);
+    });
 }

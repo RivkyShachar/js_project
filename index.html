@@ -11,14 +11,14 @@
 
     <!-- awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     <!-- css  -->
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/index.css">
 
     <!-- lodash -->
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-    
-    <script defer type="module" src="js/app.js"></script>
+
+    <script defer type="module" src="js/app_index.js"></script>
 
 </head>
 
@@ -33,27 +33,40 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class=" collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul id="id_nav" class="navbar-nav col-6 p-1">
+                <div class=" collapse navbar-collapse  d-lg-flex justify-content-center " id="navbarSupportedContent">
+                    <ul id="id_nav" class="navbar-nav p-1">
                         <!-- the countries that in the nav bar -->
                     </ul>
-                    <div id="id_select_box" class="d-md-flex justify-content-end pe-1 pb-2 pb-md-0 col-md-3">
-                        <!-- select box of all countries -->
-                    </div>
-                    <form id="id_form" class="d-flex" role="search">
-                        <input id="id_input" class="form-control" type="search" placeholder="Search"
-                            aria-label="Search" />
-                        <button id="id_search_btn" class="btn btn-outline-dark ms-1">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </form>
                 </div>
             </div>
         </nav>
     </header>
     <!-- end header -->
-    <main class="container d-flex justify-content-center">
+    <main class="container d-flex flex-column align-items-center">
+
+        <!-- Search form -->
+        <form id="id_form" class="d-flex w-100 mb-2" role="search">
+            <input id="id_input" class="form-control bg-body bg-opacity-50" type="search" placeholder="Search"
+                aria-label="Search" />
+        </form>
+
+        <!-- Select box -->
+        <div id="id_select_box" class="w-100">
+            <!-- select box of all countries -->
+            <select class="form-select w-100 bg-body bg-opacity-50">
+                <option value="Israel" selected>Choose a country</option>
+                <!-- Add other options as needed -->
+            </select>
+        </div>
+
+        <div>
+            <h2 class="text-center text-light">The last countries you have searched for</h2>
+            <div id="last_search" class="row">
+                <!-- the last countries -->
+            </div>
+        </div>
     </main>
+    <footer class="row"></footer>
 
     <!-- bootstrap and aos -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
