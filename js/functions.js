@@ -1,4 +1,4 @@
-import { countries_names, country_item, doApi} from "./app.js";
+import { countries_names, country_item, doApi} from "./app_single.js";
 import County from "./county.js";
 
 let nav_contries_arr = ["Israel", "USA", "United Kingdom", "France", "Thailand"];
@@ -35,12 +35,24 @@ export const createSelectBox = (_parent) => {
     <option value="Israel" selected>Choose a country</option>
     </select>`;
     let option_parent = document.querySelector("#id_option");
-    countries_names.forEach(item => {
+    let orderedList = _.sortBy(countries_names,['name.common']);
+    orderedList.forEach(item => {
         option_parent.innerHTML += `<option value="${item.name.common}">${item.name.common} </option>`;
     })
 }
-
-
+export const createSelectBox1 = (_parent) => {
+    let parent = document.querySelector(_parent);
+    parent.innerHTML = `
+    <select id="id_option" class="form-select" aria-label="Default select example"
+    style="width: 200px">
+    <option value="Israel" selected>Choose a country</option>
+    </select>`;
+    let option_parent = document.querySelector("#id_option");
+    let orderedList = _.sortBy(countries_names,['name.common']);
+    orderedList.forEach(item => {
+        option_parent.innerHTML += `<option value="${item.name.common}">${item.name.common} </option>`;
+    })
+}
 
 export const getCountryByName = async(_name) => {
     await doApi(`name/${_name}`)

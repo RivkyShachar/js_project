@@ -20,7 +20,8 @@ export default class County {
     render = () => {
         this.parent.innerHTML = "";
         let div = document.createElement("div");
-        div.className = "border border-dark bg-white p-4 w-50 my-4";
+        div.className = "border border-dark p-4 w-50 my-4";
+        div.style.background = "#E6D15F";
         this.parent.append(div);
         div.innerHTML =
             `<img src="${this.flag}" alt="${this.name}" class="w-50 float-end mx-4 border border-dark">
