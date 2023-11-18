@@ -1,6 +1,6 @@
 export let countries_names;
 export let country_item;
-export let last_countries = []
+export let last_countries = [];
 
 // get the names off all the countries
 export const doApiNames = async (_quary) => {

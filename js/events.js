@@ -21,6 +21,7 @@ export const declareEventsIndex = () => {
 
 export const declareEvents= () => {
     declareEventsIndex();
+    let input_search = document.querySelector("#id_input");
     
     let search_btn = document.querySelector("#id_search_btn");
     search_btn.addEventListener("click", e => {

@@ -1,7 +1,7 @@
 import { countries_names, country_item, doApi, last_countries } from "./api.js";
 import County from "./county.js";
 
-let nav_contries_arr = ["Israel", "USA", "United Kingdom", "France", "Thailand"];
+export let nav_contries_arr = ["Israel", "USA", "United Kingdom", "France", "Thailand"];
 
 export const createNavBar = (_parent) => {
     let parent = document.querySelector(_parent);
@@ -14,7 +14,7 @@ export const createNavBar = (_parent) => {
         // Creating a element
         let a = document.createElement("a");
         a.className = "nav-link active";
-        a.href = "#";//`index.html?name=${item}`;
+        a.href = "single.html";
         a.innerHTML = item;
 
         // Adding click event listener to a element
@@ -61,7 +61,7 @@ export const getCountryByName = async (_name) => {
 export const createCountry = async () => {
     console.log(country_item);
     console.log(country_item[0]);
-    last_countries.unshift(await country_item[0]);
+    last_countries.unshift(country_item[0]);
     console.log(last_countries);
     for (let i = last_countries.length; i > 4; i--)
     {
@@ -74,6 +74,7 @@ export const createCountry = async () => {
 }
 
 export const createCountrySmall = async () => {
+    localStorage.setItem("lastCountries", JSON.stringify(last_countries));
     console.log(last_countries.length);
     for (let i = 0; i < last_countries.length; i++) {
         console.log(last_countries[i]);

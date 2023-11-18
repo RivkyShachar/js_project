@@ -6,15 +6,15 @@ export default class County {
         this.name = _item.name.common;
         this.pop = Number(_item.population).toLocaleString();
         this.region = _item.region;
-        this.languages = _item.languages;
-        this.joinLanguages = Object.values(this.languages).join(', ');
+        this.languages = _item.languages || {No: "No languages"};
+        this.joinLanguages = Object.values(this.languages || {}).join(', ');
         this.coin = _item.currencies;
-        this.capital = _item.capital;
+        this.capital = _item.capital || 'No Capital';
         this.flag = _item.flags.png;
         this.latlng = _item.latlng;
         this.area = Number(_item.area).toLocaleString();
         this.borders = _item.borders || [];
-        this.joinBorders = this.borders.length > 0 ? this.borders.map(border => `<a href="#" class="border-link" data-border="${border}">${border}</a>`).join(', ') : "No borders";
+        this.joinBorders = this.borders.length > 0 ? this.borders.map(border => `<a href="../single.html" class="border-link" data-border="${border}">${border}</a>`).join(', ') : "No borders";
         this.zoom = this.getZoomLevel();
     }
     render = () => {
@@ -69,6 +69,7 @@ export default class County {
         img.alt = this.name;
         img.className = "col-10 "
         img.addEventListener("click", () => {
+            window.location.href = 'single.html';
             getCountryByName(this.name);
         });
         div.append(img);
@@ -80,6 +81,7 @@ export default class County {
     }
 
     renderCoin = (currencies) => {
+        currencies = currencies || {};
         return Object.entries(currencies)
             .map(([code, currency]) => `${currency.name} (${currency.symbol})`)
             .join(', ');
