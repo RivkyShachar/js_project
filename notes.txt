@@ -1,2 +1,3 @@
-in the index
-load the page
+the local storage need to be different
+in index select and search need to go to single
+in index nav and small show just one second

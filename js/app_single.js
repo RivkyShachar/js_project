@@ -1,6 +1,7 @@
 import {createSelectBox, createNavBar} from "./functions.js"
 import { declareEvents } from "./events.js";
-import {doApiNames} from "./api.js"
+import {doApiNames} from "./api.js";
+import {localStorageLastCountries} from "./local_storage.js"
 
 window.onload = async() => {
 
@@ -11,5 +12,6 @@ window.onload = async() => {
     createNavBar("#id_nav");
 
     declareEvents();
+    localStorageLastCountries();
 }
 

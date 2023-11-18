@@ -1,5 +1,6 @@
-import { countries_names, country_item, doApi, last_countries } from "./api.js";
+import {countries_names, country_item, doApi} from "./api.js";
 import County from "./county.js";
+import {last_countries} from "./local_storage.js"
 
 export let nav_contries_arr = ["Israel", "USA", "United Kingdom", "France", "Thailand"];
 
