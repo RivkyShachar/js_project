@@ -69,8 +69,7 @@ export default class County {
         img.alt = this.name;
         img.className = "col-10 "
         img.addEventListener("click", () => {
-            window.location.href = 'single.html';
-            getCountryByName(this.name);
+            window.location.href = `single.html?name=${this.name}`;
         });
         div.append(img);
         let h2 = document.createElement("h2");

@@ -1,6 +1,5 @@
-import {countries_names, country_item, doApi} from "./api.js";
+import { countries_names, country_item, doApi, last_countries } from "./api.js";
 import County from "./county.js";
-import {last_countries} from "./local_storage.js"
 
 export let nav_contries_arr = ["Israel", "USA", "United Kingdom", "France", "Thailand"];
 
@@ -8,21 +7,15 @@ export const createNavBar = (_parent) => {
     let parent = document.querySelector(_parent);
 
     nav_contries_arr.forEach(item => {
-        // Creating li element
+
         let li = document.createElement("li");
         li.className = "nav-item";
 
-        // Creating a element
         let a = document.createElement("a");
         a.className = "nav-link active";
-        a.href = "single.html";
+        a.href = `single.html?name=${item}`;
         a.innerHTML = item;
 
-        // Adding click event listener to a element
-        a.addEventListener("click", () => {
-            console.log(`click ${item}`);
-            getCountryByName(item);
-        });
         li.append(a);
         parent.append(li);
     });
@@ -56,31 +49,37 @@ export const createSelectBoxBig = (_parent) => {
 
 export const getCountryByName = async (_name) => {
     await doApi(`name/${_name}`)
-    createCountry();
+    await createCountry();
 }
 
 export const createCountry = async () => {
-    console.log(country_item);
-    console.log(country_item[0]);
-    last_countries.unshift(country_item[0]);
-    console.log(last_countries);
-    for (let i = last_countries.length; i > 4; i--)
-    {
+    // Check if the country is already in the list
+    const existingIndex = last_countries.findIndex(item => JSON.stringify(item) === JSON.stringify(country_item[0]));
+
+    // If the country is already in the list, move it to the first position
+    if (existingIndex !== -1) {
+        last_countries.unshift(last_countries.splice(existingIndex, 1)[0]);
+    } else {
+        // If the country is not in the list, add it to the first position
+        last_countries.unshift(country_item[0]);
+    }
+
+    for (let i = last_countries.length; i > 4; i--) {
         last_countries.pop()
     }
-    console.log(last_countries);
     let county = new County("main", country_item[0]);
-    await county.render();
-    createCountrySmall();
+    county.render();
+    console.log(last_countries);
+    console.log(country_item[0]);
+    // save the updated last countries in memory
+    localStorage.setItem("lastCountries", JSON.stringify(last_countries));
+
 }
 
+
 export const createCountrySmall = async () => {
-    localStorage.setItem("lastCountries", JSON.stringify(last_countries));
-    console.log(last_countries.length);
     for (let i = 0; i < last_countries.length; i++) {
-        console.log(last_countries[i]);
-        // let county = new County("#last_search", last_countries[i]);
-        let county = new County("footer", last_countries[i]);
+        let county = new County("#last_search", last_countries[i]);
         await county.renderSmall();
     }
 }

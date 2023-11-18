@@ -6,15 +6,13 @@ export const declareEventsIndex = () => {
     let parent = document.querySelector("main")
 
     select_box.addEventListener("change", () => {
-        getCountryByName(select_box.value);
-        input_search.value = select_box.value;
+        window.location.href = `single.html?name=${select_box.value}`;
     });
 
-    input_search.addEventListener("keydown", (e) => {
+    input_search.addEventListener("keydown", async(e) => {
+        e.preventDefault();
         if (e.key === "Enter") {
-            e.preventDefault();
-            getCountryByName(input_search.value);
-            select_box.value = "Israel";
+            window.location.href = `single.html?name=${input_search.value}`;
         }
     });
 }
