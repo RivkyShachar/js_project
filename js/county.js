@@ -1,3 +1,4 @@
+import { doApiImage } from "./api.js";
 import { getCountryByName, getNameOfCode } from "./functions.js"
 
 export default class County {
@@ -16,6 +17,7 @@ export default class County {
         this.borders = _item.borders || [];
         this.joinBorders = this.borders.length > 0 ? this.borders.map(border => `<a href="../single.html" class="border-link" data-border="${border}">${border}</a>`).join(', ') : "No borders";
         this.zoom = this.getZoomLevel();
+        this.image;
     }
     render = () => {
         this.parent.innerHTML = "";
@@ -48,7 +50,6 @@ export default class County {
                 getNameOfCode(border)
                     .then(data => {
                         country_name = data
-                        console.log(country_name);
                         if (!country_name) {
                             return;
                         }
@@ -60,6 +61,13 @@ export default class County {
                         });
                     });
             }
+        });
+        doApiImage(this.name).then(data => {
+            this.image = data
+            console.log(data);
+            console.log(this.image);
+            this.parent.style.backgroundImage = `url('${this.image}')`;
+            this.parent.style.backgroundSize = "cover";
         });
     }
 

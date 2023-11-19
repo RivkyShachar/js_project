@@ -68,8 +68,6 @@ export const createCountry = async () => {
     }
     let county = new County("main", country_item[0]);
     county.render();
-    console.log(last_countries);
-    console.log(country_item[0]);
     // save the updated last countries in memory
     localStorage.setItem("lastCountries", JSON.stringify(last_countries));
 

@@ -53,3 +53,10 @@ const initLastCountries = async () => {
         last_countries.push(country_item[0]);
     }
 }
+
+export const doApiImage = async (_searchVal) => {
+    let url = `https://pixabay.com/api/?key=35495136-199e51b164e4908b88f17572c&q=${_searchVal}&image_type=photo&pretty=true`;
+    let resp = await fetch(url);
+    let images = await resp.json();
+    return images.hits[0].largeImageURL;
+}
