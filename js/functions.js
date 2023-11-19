@@ -15,7 +15,6 @@ export const createNavBar = (_parent) => {
         a.className = "nav-link active";
         a.href = `single.html?name=${item}`;
         a.innerHTML = item;
-
         li.append(a);
         parent.append(li);
     });

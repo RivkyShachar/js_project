@@ -6,7 +6,7 @@ export default class County {
         this.name = _item.name.common;
         this.pop = Number(_item.population).toLocaleString();
         this.region = _item.region;
-        this.languages = _item.languages || {No: "No languages"};
+        this.languages = _item.languages || { No: "No languages" };
         this.joinLanguages = Object.values(this.languages || {}).join(', ');
         this.coin = _item.currencies;
         this.capital = _item.capital || 'No Capital';
@@ -20,19 +20,21 @@ export default class County {
     render = () => {
         this.parent.innerHTML = "";
         let div = document.createElement("div");
-        div.className = "border border-dark p-4 w-50 my-4";
-        div.style.background = "#E6D15F";
+        div.className = "rounded border bg-secondary bg-opacity-75 text-white p-4 m-4";
+        div.setAttribute("data-aos", "fade-up");
+        div.setAttribute("data-aos-duration", "1500");
+        div.style.minWidth = "70%";
         this.parent.append(div);
         div.innerHTML =
-            `<img src="${this.flag}" alt="${this.name}" class="w-50 float-end mx-4 border border-dark">
+            `<img src="${this.flag}" alt="${this.name}" data-aos="zoom-in" data-aos-duration="3000" class="w-50 float-end mx-4 border border-dark">
             <div class="ms-4 ">
             <h2>${this.name}</h2>
-            <div>Population: ${this.pop} </div>
-            <div>Region: ${this.region}</div>
-            <div>Languages: ${this.joinLanguages}</div>
-            <div>Coin:  ${this.renderCoin(this.coin)}</div>
-            <div>Capital: ${this.capital}</div>
-            <div>Area: ${this.area}</div>
+            <div><strong>Population:</strong> ${this.pop} </div>
+            <div><strong>Region:</strong> ${this.region}</div>
+            <div><strong>Languages:</strong> ${this.joinLanguages}</div>
+            <div><strong>Coin:</strong>  ${this.renderCoin(this.coin)}</div>
+            <div><strong>Capital:</strong> ${this.capital}</div>
+            <div><strong>Area:</strong> ${this.area}</div>
             <div class="mt-3 "><strong>States with borders:</strong><br>
             <div id="id_borders" class="borders_div"> ${this.joinBorders}</div>
              </div>
@@ -51,6 +53,7 @@ export default class County {
                             return;
                         }
                         borderLink.innerHTML = country_name;
+                        borderLink.className = "text-decoration-none text-white";
                         borderLink.addEventListener('click', (event) => {
                             event.preventDefault();
                             getCountryByName(country_name);
@@ -63,6 +66,8 @@ export default class County {
     renderSmall = () => {
         let div = document.createElement("div");
         div.className = "col-6 col-lg-3 col-md-6 col-sm-12 px-3 mt-4 text-center box";
+        div.setAttribute("data-aos", "fade-right");
+        div.setAttribute("data-aos-duration", "2000");
         this.parent.append(div);
         let img = document.createElement("img");
         img.src = this.flag;

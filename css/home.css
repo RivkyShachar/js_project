@@ -1,4 +1,4 @@
-body{
+main{
     background-image: url("../img/flags_bg.png");
     background-size: cover;
     background-position: bottom, center;
@@ -9,4 +9,9 @@ nav{
     position: sticky;
     top: 0;
     z-index: 100;
+}
+
+nav a:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
 }

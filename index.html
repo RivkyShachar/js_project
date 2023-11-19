@@ -6,18 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Js final project</title>
 
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <!-- bootstrap 5 -->
     <link rel="stylesheet" href="bootstrap.min.css">
 
     <!-- awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    
+
     <!-- lodash -->
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-    
+
     <script defer type="module" src="js/app_index.js"></script>
-   
+
     <!-- css  -->
     <link rel="stylesheet" href="css/index.css">
 
@@ -43,17 +46,17 @@
         </nav>
     </header>
     <!-- end header -->
-    <main class="container d-flex flex-column align-items-center">
-        <h1>Welcome to Global Journey</h1>
-        <p>Discover the beauty and diversity of countries worldwide at Global Journey.</p>
+    <main class="d-flex flex-column align-items-center p-4">
+        <h1 class="mt-4 m-3 text-white display-2">Welcome to Global Journey</h1>
+        <p class="text-center my-4 text-secondary display-5">Discover the beauty and diversity of countries worldwide at Global Journey.</p>
         <!-- Search form -->
-        <form id="id_form" class="d-flex w-100 mb-2" role="search">
+        <form id="id_form" class="d-flex w-100 mb-2" role="search" data-aos="zoom-in" data-aos-duration="2000">
             <input id="id_input" class="form-control bg-body bg-opacity-50" type="search" placeholder="Search"
                 aria-label="Search" />
         </form>
 
         <!-- Select box -->
-        <div id="id_select_box" class="w-100">
+        <div id="id_select_box" class="w-100" data-aos="zoom-in" data-aos-duration="2000">
             <!-- select box of all countries -->
             <select class="form-select w-100 bg-body bg-opacity-50">
                 <option value="Israel" selected>Choose a country</option>
@@ -62,7 +65,7 @@
         </div>
 
         <div>
-            <h2 class="text-center text-light">Last 4 Countries You Looked At</h2>
+            <h2 class="text-center text-light mt-2">Last 4 Countries You Looked At</h2>
             <div id="last_search" class="row">
                 <!-- the last countries -->
             </div>
@@ -73,10 +76,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
-    <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
-    <!-- <script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
         AOS.init();
-    </script> -->
+    </script>
 </body>
 
 </html>
