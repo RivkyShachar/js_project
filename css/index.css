@@ -1,11 +1,11 @@
 main{
-    background-image: url("https://www.worldatlas.com/r/w1200-q80/upload/f4/e0/49/shutterstock-1665254809.png");
+    background-image: url("../img/globus.jpg");
     background-size: cover;
     background-position: bottom, center;
 }
 
 nav{
-    background: #1F5084;
+    background: #DBD6CF;
     position: sticky;
     top: 0;
     z-index: 100;

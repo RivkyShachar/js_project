@@ -36,7 +36,7 @@ export default class County {
             <div><strong>Languages:</strong> ${this.joinLanguages}</div>
             <div><strong>Coin:</strong>  ${this.renderCoin(this.coin)}</div>
             <div><strong>Capital:</strong> ${this.capital}</div>
-            <div><strong>Area:</strong> ${this.area}</div>
+            <div><strong>Area:</strong> ${this.area} sq km</div>
             <div class="mt-3 "><strong>States with borders:</strong><br>
             <div id="id_borders" class="borders_div"> ${this.joinBorders}</div>
              </div>
